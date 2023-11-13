@@ -1,9 +1,7 @@
 class TasksController < ApplicationController
-  def index
-  end
+  def index; end
 
-  def show
-  end
+  def show; end
 
   def new
     @task = Task.new
@@ -13,10 +11,9 @@ class TasksController < ApplicationController
     task = Task.new(task_params)
     task.save!
     redirect_to tasks_url, notice: "タスク「#{task.name}」を登録しました。"
-  end  
-
-  def edit
   end
+
+  def edit; end
 
   private
 
