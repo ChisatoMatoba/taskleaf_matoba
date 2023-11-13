@@ -9,6 +9,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module Taskleaf
+  # The main application class for the Taskleaf application.
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
