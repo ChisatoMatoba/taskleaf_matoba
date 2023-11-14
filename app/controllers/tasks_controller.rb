@@ -1,7 +1,14 @@
-class TasksController < ApplicationController
-  def index; end
+# frozen_string_literal: true
 
-  def show; end
+# TasksController handles the management of tasks in the application.
+class TasksController < ApplicationController
+  def index
+    @tasks = Task.all
+  end
+
+  def show
+    @task = Task.find(params[:id])
+  end
 
   def new
     @task = Task.new
