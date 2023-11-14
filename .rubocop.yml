@@ -1,0 +1,7 @@
+AllCops:
+ NewCops: enable
+
+# 除外するディレクトリ（自動生成されたファイル）
+ Exclude:
+   - "config/**/*"
+   - "bin/*"
