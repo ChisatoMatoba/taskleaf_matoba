@@ -3,7 +3,7 @@
 # TasksController handles the management of tasks in the application.
 class TasksController < ApplicationController
   def index
-    @tasks = current_user.tasks.order(created_at: :desc)
+    @tasks = current_user.tasks.recent
   end
 
   def show
