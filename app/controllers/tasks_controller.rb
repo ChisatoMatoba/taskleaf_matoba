@@ -2,7 +2,7 @@
 
 # TasksController handles the management of tasks in the application.
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: %i[show edit update destroy]
 
   def index
     @tasks = current_user.tasks.recent
