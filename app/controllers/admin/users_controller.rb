@@ -1,55 +1,60 @@
-class Admin::UsersController < ApplicationController
-  before_action :require_admin
+# frozen_string_literal: true
 
-  def index
-    @users = User.all
-  end
+module Admin
+  # class Admin::UsersController
+  class UsersController < ApplicationController
+    before_action :require_admin
 
-  def show
-    @user = User.find(params[:id])
-  end
-
-  def edit
-    @user = User.find(params[:id])
-  end
-
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      redirect_to admin_user_url(@user), notice: "ユーザー「#{@user.name}」を登録しました。"
-    else
-      render :new, status: :unprocessable_entity
+    def index
+      @users = User.all
     end
-  end
 
-  def update
-    @user = User.find(params[:id])
-
-    if @user.update(user_params)
-      redirect_to admin_user_path(@user), notice: "ユーザ「#{@user.name}」を更新しました。"
-    else
-      render :new
+    def show
+      @user = User.find(params[:id])
     end
-  end
 
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to admin_users_url, notice: "ユーザ「#{@user.name}」を削除しました。"
-  end
+    def edit
+      @user = User.find(params[:id])
+    end
 
-  private
+    def new
+      @user = User.new
+    end
 
-  def user_params
-    params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
-  end
+    def create
+      @user = User.new(user_params)
 
-  def require_admin
-    redirect_to root_path unless current_user.admin?
+      if @user.save
+        redirect_to admin_user_url(@user), notice: "ユーザー「#{@user.name}」を登録しました。"
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+
+    def update
+      @user = User.find(params[:id])
+
+      if @user.update(user_params)
+        redirect_to admin_user_path(@user), notice: "ユーザ「#{@user.name}」を更新しました。"
+      else
+        render :new
+      end
+    end
+
+    def destroy
+      @user = User.find(params[:id])
+      @user.destroy
+      redirect_to admin_users_url, notice: "ユーザ「#{@user.name}」を削除しました。"
+    end
+
+    private
+
+    def user_params
+      params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
+    end
+
+    def require_admin
+      redirect_to root_path unless current_user.admin?
+    end
   end
 end
